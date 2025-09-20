@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .div_list{
+        display:flex;
+        gap:3px;
+    }
+
+    .div_list input{
+        background-color: #e8f0ff;
+        border-radius:3px;
+        border:1px solid gray;
+    }
+
+    .div_list button{
+        height:20px;
+        width:45px;
+        border:1px solid lightgray;
+        color:white;
+        font-size:12px;
+    }
+
+    .div_list button.add{
+        background-color:#1301ff;
+    }
+
+    .div_list button.remove{
+        background-color:#538002;
+    }
+
+
+</style>
+<body>
+    <h1>
+        Dynamic Web page
+    </h1>
+
+    <div class="div_list">
+        <input type="text" id="addlist" name="addlist" required>
+        <button class="add" onclick="add()" type="button"> 추가 </button>
+        <button class="remove" onclick="remove()" type="button"> 삭제 </button>
+    </div>
+
+    <ul id="list"></ul>
+
+    <script>
+        function add() {
+            const input = document.getElementById('addlist');
+            const list = document.getElementById('list');
+
+            const string = input.value.split(',').map(s => s.trim());
+
+            for(let i = 0; i <string.length; i++) {
+                const li  = document.createElement('li');
+                li.textContent = string[i];
+                list.append(li);
+            }
+
+            input.value = '';
+        }
+
+        function remove() {
+            const list = document.getElementById('list');
+            const length = list.children.length;
+
+            for(let i = 0; i < length; i++) {
+                list.removeChild(list.firstElementChild);
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
